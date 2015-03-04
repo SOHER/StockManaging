@@ -9,6 +9,8 @@ package controller;
 import dao.DaoGeneric;
 import dao.FactoryDao;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import model.Client;
 import model.Employee;
 import org.springframework.stereotype.Controller;
@@ -23,7 +25,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * @author Emile
  */
 @Controller
-@SessionAttributes(value = "user")
+@SessionAttributes(value = "lEmployees,employeMod")
 @RequestMapping(value = "/user")
 public class UserController {
     
@@ -31,13 +33,13 @@ public class UserController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public String loginPost(Model model) {
         
-        model.addAttribute("user", new Employee());
+        model.addAttribute("employe", new Employee());
         return "login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginGet(Model model) {
         
-        model.addAttribute("user", new Employee());
+        model.addAttribute("employe", new Employee());
         return "login";
     }
 
@@ -49,6 +51,31 @@ public class UserController {
     public String signinGet() {
         return "signin";
     }
+    
+    
+    @RequestMapping(value = "/managingEmployee", method = RequestMethod.GET)
+    public String managing() {
+        return "managingEmployee";
+    }
+    
+    @RequestMapping(value = "managingEmployee/modifyEmployee", method = RequestMethod.GET)
+    public String modifyEmployeeGet(@ModelAttribute (value = "employe")Employee employee, HttpServletRequest request, Model model) {
+        String idd = request.getParameter("id");
+        DaoGeneric dao = FactoryDao.getDAO("Employee");
+        int idMod = Integer.parseInt(request.getParameter("id"));
+        Employee emMod = dao.selectById(idMod);
+        model.addAttribute("employeMod", emMod);
+        return "modifyEmployee";
+    }
+    @RequestMapping(value = "managingEmployee/modifyEmployee", method = RequestMethod.POST)
+    public String modifyEmployeePost(@ModelAttribute (value = "employe")Employee employee, HttpServletRequest request, Model model) {
+        String idd = request.getParameter("id");
+        DaoGeneric dao = FactoryDao.getDAO("Employee");
+        int idMod = Integer.parseInt(request.getParameter("id"));
+        Employee emMod = dao.selectById(idMod);
+        model.addAttribute("employeMod", emMod);
+        return "modifyEmployee";
+    }
 
     /**
      *
@@ -56,23 +83,34 @@ public class UserController {
      * @return
      */
     @RequestMapping(value = "/welcome", method = RequestMethod.POST)
-    public String getEmployee(@ModelAttribute (value = "user")Employee employee, Model model) {
+    public String getEmployee(@ModelAttribute (value = "employe")Employee employee, HttpSession session) {
         DaoGeneric dao = FactoryDao.getDAO("Employee");
         Employee em = dao.connectByLogin(employee.getMail(),employee.getPassword());
-        model.addAttribute("user", em);
+        session.setAttribute("employe", em);
         return "welcome";
     }
+    /**
+     *
+     * @param employee
+     * @return
+     */
+    @RequestMapping(value = "/updateEmployee", method = RequestMethod.POST)
+    public String updateEmployee(@ModelAttribute (value = "employeMod")Employee employee, HttpServletRequest request, Model model) {
+        DaoGeneric dao = FactoryDao.getDAO("Employee");
+        dao.update(employee);
+        return "modifyEmployee";
+    }
     
-//    /**
-//     *
-//     * @return 
-//     */
-//    @ModelAttribute(value = "lVilles")
-//    public List<Villes> listeVille(){
-//    DaoGeneric dao = FactoryDao.getDAO("Villes");
-//    List<Villes> l = dao.selectAll();
-//    return l;
-//}
+    /**
+     *
+     * @return 
+     */
+    @ModelAttribute(value = "lEmployees")
+    public List<Employee> listEmployees(){
+    DaoGeneric dao = FactoryDao.getDAO("Employee");
+    List<Employee> e = dao.selectAll();
+    return e;
+}
 //    
 //    @ModelAttribute(value = "lEditeurs")
 //    public List<Editeurs> listeEditeurs(){

@@ -98,6 +98,12 @@ public abstract class DaoGeneric <T extends Business>{
         
     }
     
+    public Employee selectById(int id)
+    {
+        Employee employee =null;
+        return employee;
+    }
+    
     
     
 }

@@ -13,29 +13,32 @@
 <!--webfonts-->
 <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
 <!--//webfonts-->
-        <title>Inscription</title>
+        <title>Login</title>
     </head>
     <body>
-    <div class="main" style="padding-top: 0">
+        <h1 class="text">Gestion des employés</h1>
 
+        <div  class="main">
 
-        <form:form modelAttribute="client" action="welcome.htm" method="POST">
-               <div class="lable">
-            <form:label cssClass="col_1_of_2 span_1_of_2" path="name">Nom:</form:label>
-            <form:input path="name"/><br>
-            <form:label cssClass="col_1_of_2 span_1_of_2" path="surname">Prenom:</form:label>
-            <form:input path="surname"/><br>
-            </div>
-            <div class="lable">
-            <form:label cssClass="col_1_of_2 span_1_of_2" path="mail">Mail:</form:label>
-            <form:input path="mail"/><br>
-            <form:label cssClass="col_1_of_2 span_1_of_2" path="password">Mot de passe:</form:label>
-            <form:input path="password"/><br>
-            </div>
+            <table style="color:#FFF " width="100%" border="1" align="center" cellpadding="2" cellspacing="2">
+    <tr>
+        <td Class="text">Name</td>
+        <td Class="text">Surname</td>
+    </tr>   
+            <c:forEach var="i" items="${lEmployees}">
+
+    <tr>  
+            <td class="tdstyle"><c:out value="${i.name}"/></td>
+            <td class="tdstyle"><c:out value="${i.surname}"/></td>
+        <td class="tdstyle">            
             <div class="submit">
-            <input class="submit" type="submit" value="Inscription"/>
+                       <a class="submit" href="<%=request.getContextPath()%>/user/managingEmployee/modifyEmployee.htm?id=${i.idEmployee}">Modifier</a>
             </div>
-        </form:form>
-                </div>
+        </td>
+    </tr>
+                </c:forEach>
+
+</table> 
+</div>
     </body>
 </html>

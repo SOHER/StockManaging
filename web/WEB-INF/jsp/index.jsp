@@ -6,7 +6,7 @@
 <html>
     <head>
 <!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
-<link href="css/style.css" rel='stylesheet' type='text/css' />
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--webfonts-->
@@ -22,7 +22,7 @@
                        <a class="submit" href="<%=request.getContextPath()%>/user/login.htm">Se connecter</a>
 		   </div>
 		   <div class="submit">
-                       <a class="submit" href="<%=request.getContextPath()%>/user/login.htm">Créer un Compte</a>
+                       <a class="submit" href="<%=request.getContextPath()%>/user/signin.htm">Créer un Compte</a>
 		   </div>
 		   <div class="clear"> </div>
 		</form>

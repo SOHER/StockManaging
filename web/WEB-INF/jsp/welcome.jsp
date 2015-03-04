@@ -6,7 +6,7 @@
 <html>
     <head>
 <!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
-<link href="../css/style.css" rel='stylesheet' type='text/css' />
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--webfonts-->
@@ -16,7 +16,15 @@
     </head>
     <body>
             <div class="main">
-            <form:label cssClass="col_1_of_2 span_1_of_2" path="user">Bonjour ${user.name}</form:label>
+                <form:label cssClass="col_1_of_2 span_1_of_2" path="employe">Bonjour ${sessionScope.employe.name}</form:label>
+            <form>
+		   <div class="submit">
+                       <a class="submit" href="<%=request.getContextPath()%>/products.htm">Gestion des produits</a>
+		   </div>
+		   <div class="submit">
+                       <a class="submit" href="<%=request.getContextPath()%>/user/managingEmployee.htm">Gestion des employés / clients</a>
+		   </div>
+            </form>
             </div>
             </body>
 </html>

@@ -6,7 +6,7 @@
 <html>
     <head>
 <!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
-<link href="../css/style.css" rel='stylesheet' type='text/css' />
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet"/>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <!--webfonts-->
@@ -18,7 +18,7 @@
     <div class="main">
 
 
-        <form:form modelAttribute="user" action="welcome.htm" method="POST">
+        <form:form modelAttribute="employe" action="welcome.htm" method="POST">
             <div class="lable">
             <form:label cssClass="col_1_of_2 span_1_of_2" path="mail">Mail:</form:label>
             <form:input path="mail"/><br>
