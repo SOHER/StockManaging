@@ -17,7 +17,6 @@
 
     <body>
         <div class="main" >
-                                    <form:label cssClass="col_1_of_2 span_1_of_2" path="employe">Bonjour ${sessionScope.employe.name}</form:label>
 
                         <form>
            <div class="submit">

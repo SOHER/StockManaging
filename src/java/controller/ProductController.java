@@ -9,8 +9,9 @@ package controller;
 import dao.DaoGeneric;
 import dao.FactoryDao;
 import java.util.List;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import model.Ball;
+import model.ProductType;
 import model.Category;
 import model.Employee;
 import model.Product;
@@ -26,19 +27,19 @@ import org.springframework.web.bind.annotation.SessionAttributes;
  * @author Emile
  */
 @Controller
-@SessionAttributes(value = "employe,lCats")
+@SessionAttributes(value = "employe,lCats,lSups,lTypes")
 @RequestMapping(value = "/products")
 public class ProductController {
     
         @RequestMapping(value = "/products", method = RequestMethod.POST)
-        public String productsPost(@ModelAttribute (value = "employe")Employee employee, HttpSession session) {
-        session.setAttribute("employe", employee);
-        return "products"; 
+        public String productsPost(@ModelAttribute (value = "productNew") Product product, HttpServletRequest request, HttpSession session) {
+            DaoGeneric dao = FactoryDao.getDAO("");
+            dao.insert(product);
+            return "products";
         }
         
         @RequestMapping(value = "/products", method = RequestMethod.GET)
-        public String productsGET(@ModelAttribute (value = "employe")Employee employee, HttpSession session) {
-        session.setAttribute("employe", employee);
+        public String productsGET(HttpServletRequest request, HttpSession session) {
         return "products"; 
         }
         
@@ -62,13 +63,13 @@ public class ProductController {
         
     @RequestMapping(value = "/addProduct", method = RequestMethod.POST)
     public String signinPost(Model model) {
-        model.addAttribute("productNew", new Ball());
+        model.addAttribute("productNew", new Product());
         return "addProduct";    
     }
     
     @RequestMapping(value = "/addProduct", method = RequestMethod.GET)
     public String signinGet(Model model) {
-        model.addAttribute("productNew", new Ball());
+        model.addAttribute("productNew", new Product());
         return "addProduct";
     }
         
@@ -77,10 +78,22 @@ public class ProductController {
     
         
     @ModelAttribute(value = "lCats")
-    public List<Category> listeEditeurs(){
+    public List<Category> listeCats(){
     DaoGeneric dao = FactoryDao.getDAO("Category");
     List<Category> cats = dao.selectAll();
     return cats;
+    }
+    @ModelAttribute(value = "lSups")
+    public List<Category> listeSups(){
+    DaoGeneric dao = FactoryDao.getDAO("Supplier");
+    List<Category> sups = dao.selectAll();
+    return sups;
+    }
+    @ModelAttribute(value = "lTypes")
+    public List<ProductType> listeTypes(){
+    DaoGeneric dao = FactoryDao.getDAO("ProductType");
+    List<ProductType> types = dao.selectAll();
+    return types;
     }
     
     

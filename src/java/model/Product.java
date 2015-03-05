@@ -34,7 +34,6 @@ import javax.persistence.Table;
 @Table(name="product"
     ,catalog="stockmanaging"
 )
-@Inheritance(strategy=InheritanceType.JOINED)
 public class Product extends Business implements Serializable{
     
     private int idProduct;
@@ -43,8 +42,35 @@ public class Product extends Business implements Serializable{
     private Supplier supplier;
     Collection<Category> categorySet;
     Collection<CommandLine> commandLineSet;
-//    private Set commandLineSet = new HashSet(0);
+    private String productSize;
+    private String color;
+    private ProductType productType;
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+    @OneToOne
+    @JoinColumn(name="type")
+    public ProductType getProductType() {
+        return productType;
+    }
+
+    public void setProductType(ProductType productType) {
+        this.productType = productType;
+    }
+
     
+    public String getProductSize() {
+        return productSize;
+    }
+
+    public void setProductSize(String productSize) {
+        this.productSize = productSize;
+    }    
 
     @Id @GeneratedValue(strategy=IDENTITY)
     @Column(name="idProduct", unique=true, nullable=false)

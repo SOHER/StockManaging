@@ -21,17 +21,16 @@
 
         <form:form modelAttribute="productNew" action="products.htm" method="POST">
                <div class="lable">
-
+            <form:label cssClass="col_1_of_2 span_1_of_2" path="productType">Type:</form:label>
+            <form:select  cssClass="lable" itemLabel="label" itemValue="idProducType" items="${lTypes}" path="productType"/><br>
             <form:label cssClass="col_1_of_2 span_1_of_2" path="label">Label:</form:label>
             <form:input path="label"/><br>
             <form:label cssClass="col_1_of_2 span_1_of_2" path="price">Prix:</form:label>
             <form:input path="price"/><br>
-            </div>
-            <div class="lable">
-            <form:label cssClass="col_1_of_2 span_1_of_2" path="supplier">Fournisseur</form:label>
-            <form:input path="supplier"/><br>
+            <form:label cssClass="col_1_of_2 span_1_of_2" path="supplier">Fournisseur:</form:label>
+            <form:select  cssClass="lable" itemLabel="Brand" itemValue="idSupplier" items="${lSups}" path="supplier"/><br>
             <form:label cssClass="col_1_of_2 span_1_of_2" path="categorySet">Category:</form:label>
-            <form:select  cssClass="lable" itemLabel="label" itemValue="idCategory" items="${lCats}" path="categorySet"/>
+            <form:select  cssClass="lable" itemLabel="label" itemValue="idCategory" items="${lCats}" path="categorySet" multiple="true"/><br>
             </div>
             <div class="lable">
             <form:label cssClass="col_1_of_2 span_1_of_2" path="productSize">Taille:</form:label>
@@ -43,6 +42,6 @@
             <input class="submit" type="submit" value="Inscription"/>
             </div>
         </form:form>
-                </div>
+            </div>
     </body>
 </html>
