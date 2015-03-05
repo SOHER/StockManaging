@@ -31,26 +31,41 @@ public class UserController {
     
     
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPost(Model model) {
-        
+    public String loginPost(@ModelAttribute (value = "employeNew")Employee employee, Model model, HttpSession session) {
+        if(session.getAttribute("employe")!= null)
+        {
+            session.removeAttribute("employe");
+            model.addAttribute("employe", new Employee());
+        }
+        if(employee!=null)
+        {
+         DaoGeneric dao = FactoryDao.getDAO("Employee");
+         dao.insert(employee);
+        }
         model.addAttribute("employe", new Employee());
         return "login";
     }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGet(Model model) {
-        
+    public String loginGet(Model model, HttpSession session) {
+        if(session.getAttribute("employe")!= null)
+        {
+            session.removeAttribute("employe");
+            model.addAttribute("employe", new Employee());
+        }
         model.addAttribute("employe", new Employee());
         return "login";
     }
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
-    public String signinPost() {
-        return "signin";
+    public String signinPost(Model model) {
+        model.addAttribute("employeNew", new Employee());
+        return "signin";    
     }
+    
     @RequestMapping(value = "/signin", method = RequestMethod.GET)
-    public String signinGet() {
-        return "signin";
-    }
+    public String signinGet(Model model) {
+        model.addAttribute("employeNew", new Employee());
+        return "signin";      }
     
     
     @RequestMapping(value = "/managingEmployee", method = RequestMethod.GET)
@@ -94,11 +109,11 @@ public class UserController {
      * @param employee
      * @return
      */
-    @RequestMapping(value = "/updateEmployee", method = RequestMethod.POST)
+    @RequestMapping(value = "managingEmployee/updateEmployee", method = RequestMethod.POST)
     public String updateEmployee(@ModelAttribute (value = "employeMod")Employee employee, HttpServletRequest request, Model model) {
         DaoGeneric dao = FactoryDao.getDAO("Employee");
         dao.update(employee);
-        return "modifyEmployee";
+        return "managingEmployee";
     }
     
     /**

@@ -19,7 +19,7 @@
     <div class="main" style="padding-top: 0">
 
 
-        <form:form modelAttribute="client" action="welcome.htm" method="POST">
+        <form:form modelAttribute="employeNew" action="login.htm" method="POST">
                <div class="lable">
             <form:label cssClass="col_1_of_2 span_1_of_2" path="name">Nom:</form:label>
             <form:input path="name"/><br>

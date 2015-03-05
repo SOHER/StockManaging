@@ -24,8 +24,9 @@
         %>
         <form:label cssClass="col_1_of_2 span_1_of_2" path="employe">Bonjour ${sessionScope.employe.name}</form:label><br>
             <div class="main">
-            <form:form modelAttribute="employeMod" action="" method="POST">
+            <form:form modelAttribute="employeMod" action="updateEmployee.htm" method="POST">
             <div class="lable">
+            <form:hidden path="idEmployee" />
             <form:label cssClass="col_1_of_2 span_1_of_2" path="name">Nom:</form:label>
             <form:input path="name"/><br>
             <form:label cssClass="col_1_of_2 span_1_of_2" path="mail">Prénom:</form:label>

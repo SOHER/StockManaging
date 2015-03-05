@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package dao;
 
 import hibernate.HibernateUtil;
@@ -19,91 +18,79 @@ import org.hibernate.Transaction;
  * @author Emile
  * @param <T>
  */
-public abstract class DaoGeneric <T extends Business>{
-    
-
+public abstract class DaoGeneric<T extends Business> {
 
     private Session _session;
-     private Transaction trx;
+    private Transaction trx;
 
     public Session getSession() {
         return _session;
     }
 
-    
     public int insert(Business objet) {
-        
+
         launchSession();
-        
+
         _session.save(objet);
 //        System.out.println(_session.byId("38").);
-        
+
         killSession();
-        
+
         return 0;
-                
-                }
 
-    
-    public void delete(Business objet) {
-        
-        launchSession();
-        
-        _session.delete(objet);
-        
-        killSession();
-        
-        
     }
-    
-    
 
-    
+    public void delete(Business objet) {
+
+        launchSession();
+
+        _session.delete(objet);
+
+        killSession();
+
+    }
+
     public void update(Business objet) {
 
-        launchSession();
-        
-        _session.saveOrUpdate(objet);
-        
-        killSession();
+        try {
+            launchSession();
+            _session.update(objet);
+
+            killSession();
+        } catch (Exception ex) {
+            ex.getMessage();
+        }
+
     }
 
-    
     public Session launchSession() {
         _session = HibernateUtil.getSession();
-        
+
         trx = _session.beginTransaction();
-        
+
         return _session;
     }
-    
-    public void killSession()
-    {
+
+    public void killSession() {
+       trx.commit();
         _session.close();
-        trx.commit();
+        
 
     }
-    
-     public Employee connectByLogin(String mail, String mdp) {
-        Employee employee =null;
+
+    public Employee connectByLogin(String mail, String mdp) {
+        Employee employee = null;
         return employee;
     }
-    
-    
 
-    public List<T> selectAll()
-    {
+    public List<T> selectAll() {
         return null;
 
-        
     }
-    
-    public Employee selectById(int id)
-    {
-        Employee employee =null;
+
+    public Employee selectById(int id) {
+        Employee employee = null;
         return employee;
     }
-    
-    
-    
+
 }
