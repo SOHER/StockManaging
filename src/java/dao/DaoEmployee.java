@@ -59,7 +59,7 @@ public class DaoEmployee extends DaoGeneric<Employee>{
          @Override
         public Employee selectById(int id)
         {
-                    Session _session = launchSession();
+        Session _session = launchSession();
         Query query2 = _session.createQuery("from Employee where idEmployee = :id");
         query2.setInteger("id", id);
         Employee client = (Employee)query2.uniqueResult();

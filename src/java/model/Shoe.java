@@ -22,16 +22,13 @@ public class Shoe extends Product{
     private String color;
 
 
-    public String getSize() {
+
+    public String getProductSize() {
         return productSize;
     }
 
-    public void setSize(String productSize) {
+    public void setProductSize(String productSize) {
         this.productSize = productSize;
-    }
-
-    public String getColor() {
-        return color;
     }
 
     public void setColor(String color) {

@@ -12,20 +12,32 @@
 <!--webfonts-->
 <link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
 <!--//webfonts-->
-        <title>Welcome</title>
+        <title>Welcome to Spring Web MVC project</title>
     </head>
-    <body>
-                        <div class="hello"><form:label cssClass="col_1_of_2 span_1_of_2" path="employe">Bonjour ${sessionScope.employe.name}</form:label></div>
 
-            <div class="main">
-            <form>
+    <body>
+        <div class="main" >
+		<form>
 		   <div class="submit">
-                       <a class="submit" href="<%=request.getContextPath()%>/products/products.htm">Gestion des produits</a>
+                       <a class="submit" href="<%=request.getContextPath()%>/products/football.htm">Football</a>
 		   </div>
 		   <div class="submit">
-                       <a class="submit" href="<%=request.getContextPath()%>/user/managingEmployee.htm">Gestion des employés / clients</a>
+                       <a class="submit" href="<%=request.getContextPath()%>/products/tennis.htm">Tennis</a>
 		   </div>
-            </form>
-            </div>
-            </body>
+		   <div class="submit">
+                       <a class="submit" href="<%=request.getContextPath()%>/products/ping_pong.htm">Ping-Pong</a>
+		   </div>
+		   <div class="submit">
+                       <a class="submit" href="<%=request.getContextPath()%>/products/basket.htm">Basket</a>
+		   </div>
+		   <div class="clear"> </div>
+		</form>
+		<!-----//end-main---->
+		</div>
+		 <!-----start-copyright---->
+   		<div class="copy-right">
+			<p>Template by <a href="http://google.com">STORYK</a></p> 
+		</div>
+
+    </body>
 </html>

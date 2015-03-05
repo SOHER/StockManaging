@@ -87,6 +87,8 @@ ul.twitter{
 	background:#55ACEE;
 	padding: 12px;
 }
+
+
 i.tw{
 	width:30px;
 	height:30px;
@@ -287,6 +289,11 @@ width:70%;
 .tdstyle
 {
     vertical-align: middle;
+}
+
+.hello
+{
+    margin: 300;
 }
 
 @media (max-width:320px){

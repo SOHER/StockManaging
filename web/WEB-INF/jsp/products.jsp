@@ -1,17 +1,50 @@
-<%-- 
-    Document   : products
-    Created on : 4 mars 2015, 10:58:43
-    Author     : Emile
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+<!--        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">-->
+<link href="<%=request.getContextPath()%>/css/style.css" rel="stylesheet"/>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!--webfonts-->
+<link href='http://fonts.googleapis.com/css?family=Oxygen:400,300,700' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+        <title>Welcome to Spring Web MVC project</title>
     </head>
+
     <body>
-        <h1>Hello World!</h1>
+        <div class="main" >
+                                    <form:label cssClass="col_1_of_2 span_1_of_2" path="employe">Bonjour ${sessionScope.employe.name}</form:label>
+
+                        <form>
+           <div class="submit">
+                       <a class="submit" href="<%=request.getContextPath()%>/products/addProduct.htm">Ajouter un produit</a>
+            </div>
+            </form>
+		<form>
+		   <div class="submit">
+                       <a class="submit" href="<%=request.getContextPath()%>/products/football.htm">Football</a>
+		   </div>
+		   <div class="submit">
+                       <a class="submit" href="<%=request.getContextPath()%>/products/tennis.htm">Tennis</a>
+		   </div>
+		   <div class="submit">
+                       <a class="submit" href="<%=request.getContextPath()%>/products/ping_pong.htm">Ping-Pong</a>
+		   </div>
+		   <div class="submit">
+                       <a class="submit" href="<%=request.getContextPath()%>/products/basketball.htm">Basket</a>
+		   </div>
+		   <div class="clear"> </div>
+		</form>
+		<!-----//end-main---->
+		</div>
+		 <!-----start-copyright---->
+   		<div class="copy-right">
+			<p>Template by <a href="http://google.com">STORYK</a></p> 
+		</div>
+
     </body>
 </html>

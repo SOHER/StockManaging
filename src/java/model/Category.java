@@ -28,7 +28,7 @@ import javax.persistence.Table;
 @Table(name="category"
     ,catalog="stockmanaging"
 )
-public class Category implements Serializable {
+public class Category extends Business{
     
     private int idCategory;
     private String label;

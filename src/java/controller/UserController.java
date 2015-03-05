@@ -19,42 +19,67 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  *
  * @author Emile
  */
 @Controller
-@SessionAttributes(value = "lEmployees,employeMod")
+@SessionAttributes(value = "employe,lEmployees,employeMod")
 @RequestMapping(value = "/user")
 public class UserController {
     
     
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public String loginPost(@ModelAttribute (value = "employeNew")Employee employee, Model model, HttpSession session) {
-        if(session.getAttribute("employe")!= null)
+//    @RequestMapping(value = "/login", method = RequestMethod.POST)
+//    public String loginPost(@ModelAttribute (value = "employeNew")Employee employee, Model model, HttpSession session) {
+//        if(session.getAttribute("employe")!= null)
+//        {
+//            session.removeAttribute("employe");
+////            model.addAttribute("employe", new Employee());
+//            session.setAttribute("employe", new Employee());
+//        }
+//        if(employee!=null)
+//        {
+//         DaoGeneric dao = FactoryDao.getDAO("Employee");
+//         dao.insert(employee);
+//        }
+//        model.addAttribute("employe", new Employee());
+//        return "login";
+//    }
+//    @RequestMapping(value = "/login", method = RequestMethod.GET)
+//    public String loginGet(@ModelAttribute (value = "employeNew")Employee employee, Model model, HttpSession session) {
+//        if(session.getAttribute("employe")!= null)
+//        {
+//            session.removeAttribute("employe");
+////            model.addAttribute("employe", new Employee());
+//            session.setAttribute("employe", new Employee());
+//        }
+//        if(employee!=null)
+//        {
+//         DaoGeneric dao = FactoryDao.getDAO("Employee");
+//         dao.insert(employee);
+//        }
+//        model.addAttribute("employe", new Employee());
+//        return "login";
+//    }
+    
+    	@RequestMapping(value="/login")
+	public ModelAndView processPerson(@ModelAttribute (value = "employeNew") Employee employee, HttpSession session) {
+           ModelAndView modelAndView = new ModelAndView(); 
+           		modelAndView.setViewName("login");
+            if(session.getAttribute("employe")!= null)
         {
-            session.removeAttribute("employe");
-            model.addAttribute("employe", new Employee());
+                session.removeAttribute("employe");
+                modelAndView.addObject("employe", new Employee());
         }
-        if(employee!=null)
+            if(employee!=null)
         {
          DaoGeneric dao = FactoryDao.getDAO("Employee");
          dao.insert(employee);
         }
-        model.addAttribute("employe", new Employee());
-        return "login";
-    }
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String loginGet(Model model, HttpSession session) {
-        if(session.getAttribute("employe")!= null)
-        {
-            session.removeAttribute("employe");
-            model.addAttribute("employe", new Employee());
-        }
-        model.addAttribute("employe", new Employee());
-        return "login";
-    }
+		return modelAndView;
+	}
 
     @RequestMapping(value = "/signin", method = RequestMethod.POST)
     public String signinPost(Model model) {
@@ -124,6 +149,15 @@ public class UserController {
     public List<Employee> listEmployees(){
     DaoGeneric dao = FactoryDao.getDAO("Employee");
     List<Employee> e = dao.selectAll();
+    return e;
+}
+    /**
+     *
+     * @return 
+     */
+    @ModelAttribute(value = "employe")
+    public Employee Employeelog(){
+    Employee e = new Employee();
     return e;
 }
 //    

@@ -20,14 +20,16 @@ public class Ball extends Product{
     private String productSize;
     private String color;
 
-
-    public String getSize() {
+    public String getProductSize() {
         return productSize;
     }
 
-    public void setSize(String productSize) {
+    public void setProductSize(String productSize) {
         this.productSize = productSize;
     }
+
+
+
 
     public String getColor() {
         return color;

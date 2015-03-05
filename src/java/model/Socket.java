@@ -22,11 +22,11 @@ public class Socket extends Product{
     private String color;
 
 
-    public String getSize() {
+    public String getProductSize() {
         return productSize;
     }
 
-    public void setSize(String productSize) {
+    public void setProductSize(String productSize) {
         this.productSize = productSize;
     }
 
